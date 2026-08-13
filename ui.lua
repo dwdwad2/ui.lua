@@ -173,7 +173,7 @@ local Library do
         ["Equals"]            = "=",
         ["At"]                = "@",
         ["LeftBracket"]       = "LeftBracket",
-        ["RightBracket"]      = "RightBracked",
+        ["RightBracket"]      = "RightBracket",
         ["BackSlash"]         = "BackSlash",
         ["Caret"]             = "^",
         ["Underscore"]        = "_",
@@ -194,13 +194,13 @@ local Library do
         ["KeypadSeven"]       = "Keypad7",
         ["KeypadEight"]       = "Keypad8",
         ["KeypadNine"]        = "Keypad9",
-        ["KeypadPeriod"]      = "KeypadP",
-        ["KeypadDivide"]      = "KeypadD",
-        ["KeypadMultiply"]    = "KeypadM",
-        ["KeypadMinus"]       = "KeypadM",
-        ["KeypadPlus"]        = "KeypadP",
-        ["KeypadEnter"]       = "KeypadE",
-        ["KeypadEquals"]      = "KeypadE",
+        ["KeypadPeriod"]      = "KeypadPeriod",
+        ["KeypadDivide"]      = "KeypadDivide",
+        ["KeypadMultiply"]    = "KeypadMultiply",
+        ["KeypadMinus"]       = "KeypadMinus",
+        ["KeypadPlus"]        = "KeypadPlus",
+        ["KeypadEnter"]       = "KeypadEnter",
+        ["KeypadEquals"]      = "KeypadEquals",
         ["Insert"]            = "Insert",
         ["Home"]              = "Home",
         ["PageUp"]            = "PageUp",
@@ -314,7 +314,7 @@ local Library do
         end
 
         Tween.FadeItem = function(self, Item, Property, Visibility, Speed)
-            local Item = Item or self.Item 
+            Item = Item or self.Item 
 
             local OldTransparency = Item[Property]
             Item[Property] = Visibility and 1 or OldTransparency
@@ -362,7 +362,7 @@ local Library do
                 return
             end
 
-            Tween:Pause()
+            self:Pause()
             self = nil
         end
     end
@@ -468,106 +468,59 @@ local Library do
             self.Instance:Destroy()
             self = nil
         end
-    end
 
-    -- Helper functions to reduce code duplication
-    local Helpers = {} do
-        Helpers.CreateStroke = function(parent, color, transparency)
-            color = color or FromRGB(42, 49, 45)
-            transparency = transparency or 0.6
-            return Instances:Create("UIStroke", {
-                Parent = parent.Instance or parent,
-                Name = "\0",
-                Color = color,
-                Transparency = transparency,
-                LineJoinMode = Enum.LineJoinMode.Miter,
-                ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-            })
-        end
-
-        Helpers.CreateGradient = function(parent, rotation, startColor, endColor)
-            rotation = rotation or -165
-            startColor = startColor or FromRGB(255, 255, 255)
-            endColor = endColor or FromRGB(208, 208, 208)
-            return Instances:Create("UIGradient", {
-                Parent = parent.Instance or parent,
-                Name = "\0",
-                Rotation = rotation,
-                Color = RGBSequence{RGBSequenceKeypoint(0, startColor), RGBSequenceKeypoint(1, endColor)}
-            })
-        end
-
-        Helpers.ApplyElementTheme = function(element, bgColor, borderColor)
-            if element.AddToTheme then
-                element:AddToTheme({BackgroundColor3 = bgColor or "Element", BorderColor3 = borderColor or "Border"})
+        Instances.MakeDraggable = function(self)
+            if not self.Instance then 
+                return
             end
-            return element
-        end
 
-        Helpers.CreateButton = function(properties, theme, gradient)
-            local btn = Instances:Create("TextButton", properties)
-            if theme then
-                btn:AddToTheme(theme)
+            local Gui = self.Instance
+
+            local Dragging = false 
+            local DragStart
+            local StartPosition 
+
+            local Set = function(Input)
+                local DragDelta = Input.Position - DragStart
+                self:Tween(TweenInfo.new(0.16, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {Position = UDim2New(StartPosition.X.Scale, StartPosition.X.Offset + DragDelta.X, StartPosition.Y.Scale, StartPosition.Y.Offset + DragDelta.Y)})
             end
-            if gradient then
-                Helpers.CreateGradient(btn, gradient.rotation, gradient.start, gradient.end_):AddToTheme({Color = gradient.themeKey or function() return RGBSequence{RGBSequenceKeypoint(0, FromRGB(255, 255, 255)), RGBSequenceKeypoint(1, Library.Theme.Gradient)} end})
-            end
-            return btn
-        end
-    end
 
-    Instances.MakeDraggable = function(self)
-        if not self.Instance then 
-            return
-        end
+            local InputChanged
 
-        local Gui = self.Instance
+            self:Connect("InputBegan", function(Input)
+                if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch then
+                    Dragging = true
 
-        local Dragging = false 
-        local DragStart
-        local StartPosition 
+                    DragStart = Input.Position
+                    StartPosition = Gui.Position
 
-        local Set = function(Input)
-            local DragDelta = Input.Position - DragStart
-            self:Tween(TweenInfo.new(0.16, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {Position = UDim2New(StartPosition.X.Scale, StartPosition.X.Offset + DragDelta.X, StartPosition.Y.Scale, StartPosition.Y.Offset + DragDelta.Y)})
-        end
-
-        local InputChanged
-
-        self:Connect("InputBegan", function(Input)
-            if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch then
-                Dragging = true
-
-                DragStart = Input.Position
-                StartPosition = Gui.Position
-
-                if InputChanged then 
-                    return
-                end
-
-                InputChanged = Input.Changed:Connect(function()
-                    if Input.UserInputState == Enum.UserInputState.End then
-                        Dragging = false
-
-                        InputChanged:Disconnect()
-                        InputChanged = nil
+                    if InputChanged then 
+                        return
                     end
-                end)
-            end
-        end)
 
-        Library:Connect(UserInputService.InputChanged, LPH_NO_VIRTUALIZE(function(Input)
-            if Input.UserInputType == Enum.UserInputType.MouseMovement or Input.UserInputType == Enum.UserInputType.Touch then
-                if Dragging then
-                    Set(Input)
+                    InputChanged = Input.Changed:Connect(function()
+                        if Input.UserInputState == Enum.UserInputState.End then
+                            Dragging = false
+
+                            InputChanged:Disconnect()
+                            InputChanged = nil
+                        end
+                    end)
                 end
-            end
-        end))
+            end)
 
-        return Dragging
-    end
+            Library:Connect(UserInputService.InputChanged, LPH_NO_VIRTUALIZE(function(Input)
+                if Input.UserInputType == Enum.UserInputType.MouseMovement or Input.UserInputType == Enum.UserInputType.Touch then
+                    if Dragging then
+                        Set(Input)
+                    end
+                end
+            end))
 
-    Instances.MakeResizeable = function(self, Minimum, Maximum)
+            return Dragging
+        end
+
+        Instances.MakeResizeable = function(self, Minimum, Maximum)
             if not self.Instance then 
                 return
             end
@@ -1135,16 +1088,18 @@ local Library do
             List[Index] = FileName
         end
 
-        local IsNew = #List ~= CurrentList
+        local IsNew = #List ~= #CurrentList
 
-        if not IsNew then
+        if IsNew then
             for Index = 1, #List do
                 if List[Index] ~= CurrentList[Index] then
                     IsNew = true
                     break
                 end
             end
-        else
+        end
+        
+        if IsNew then
             CurrentList = List
             Element:Refresh(CurrentList)
         end
