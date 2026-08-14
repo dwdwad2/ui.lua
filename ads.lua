@@ -3133,35 +3133,35 @@ local Library = {
             end
 
             function Section:AddToggle(Config)
-                return Self:Toggle(Config)
+                return self:Toggle(Config)
             end
 
             function Section:AddSlider(Config)
-                return Self:Slider(Config)
+                return self:Slider(Config)
             end
 
             function Section:AddDropdown(Config)
-                return Self:Dropdown(Config)
+                return self:Dropdown(Config)
             end
 
             function Section:AddButton(Config)
-                return Self:Button(Config)
+                return self:Button(Config)
             end
 
             function Section:AddColorPicker(Config)
-                return Self:ColorPicker(Config)
+                return self:ColorPicker(Config)
             end
 
             function Section:AddKeybind(Config)
-                return Self:Keybind(Config)
+                return self:Keybind(Config)
             end
 
             function Section:AddMultiSelect(Config)
-                return Self:MultiSelect(Config)
+                return self:MultiSelect(Config)
             end
 
             function Section:AddLabel(Config)
-                return Self:Label(Config)
+                return self:Label(Config)
             end
 
             return setmetatable(Section, Library)
@@ -3189,7 +3189,21 @@ local Library = {
             if Params.Parent then 
                 Parent = Params.Parent
             else
-                Parent = Toggle.Section.Items["Content"]
+                local SectionItems = Toggle.Section and Toggle.Section.Items or nil
+                local SectionFrame = SectionItems and SectionItems["Content"] or nil
+
+                if SectionFrame and SectionFrame.Instance then
+                    Parent = SectionFrame
+                elseif Toggle.Section and Toggle.Section.Page and Toggle.Section.Page.ColumnsData then
+                    local sideData = Toggle.Section.Page.ColumnsData[Toggle.Section.Side]
+                    if sideData and sideData.Instance then
+                        Parent = sideData
+                    end
+                end
+
+                if not Parent then
+                    Parent = { Instance = Toggle.Section and Toggle.Section.Items and Toggle.Section.Items["Section"] and Toggle.Section.Items["Section"].Instance or nil }
+                end
             end
 
             local Items = { } do 
