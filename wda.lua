@@ -234,18 +234,18 @@ local Library do
 
     local Themes = {
         ["Preset"] = {
-            ["Background"] = FromRGB(8, 8, 8),
-            ["Border"] = FromRGB(24, 24, 24),
-            ["Inline"] = FromRGB(18, 18, 18),
-            ["Hovered Element"] = FromRGB(38, 38, 38),
-            ["Page Background"] = FromRGB(12, 12, 12),
-            ["Outline"] = FromRGB(46, 46, 46),
-            ["Element"] = FromRGB(24, 24, 24),
-            ["Gradient"] = FromRGB(255, 255, 255),
-            ["Text"] = FromRGB(240, 240, 240),
+            ["Background"] = FromRGB(20, 20, 25),
+            ["Border"] = FromRGB(10, 10, 15),
+            ["Inline"] = FromRGB(46, 46, 46),
+            ["Hovered Element"] = FromRGB(30, 30, 35),
+            ["Page Background"] = FromRGB(23, 23, 28),
+            ["Outline"] = FromRGB(10, 10, 15),
+            ["Element"] = FromRGB(30, 30, 35),
+            ["Gradient"] = FromRGB(19, 128, 225),
+            ["Text"] = FromRGB(245, 245, 245),
             ["Text Stroke"] = FromRGB(0, 0, 0),
-            ["Placeholder Text"] = FromRGB(160, 160, 160),
-            ["Accent"] = FromRGB(255, 255, 255)
+            ["Placeholder Text"] = FromRGB(145, 145, 145),
+            ["Accent"] = FromRGB(19, 128, 225)
         }
     }
 
@@ -1498,7 +1498,7 @@ local Library do
                     AutoButtonColor = false,
                     BackgroundTransparency = 1,
                     Size = UDim2New(0, 0, 0, 18),
-                    BorderSizePixel = 1,
+                    BorderSizePixel = 0,
                     AutomaticSize = Enum.AutomaticSize.X,
                     TextSize = 11,
                     BackgroundColor3 = FromRGB(25, 30, 26)
@@ -2082,9 +2082,10 @@ local Library do
                     Name = "\0",
                     BackgroundTransparency = 1,
                     BorderColor3 = FromRGB(0, 0, 0),
-                    Size = UDim2New(1, 0, 0, 28),
+                    Size = UDim2New(1, 0, 0, 22),
                     BorderSizePixel = 0,
-                    BackgroundColor3 = FromRGB(255, 255, 255)
+                    BackgroundColor3 = FromRGB(255, 255, 255),
+                    Visible = Data.Visible == true
                 })
 
                 Items["Text"] = Instances:Create("TextLabel", {
@@ -2112,8 +2113,8 @@ local Library do
                     AnchorPoint = Vector2New(0, 1),
                     Position = UDim2New(0, 0, 1, 0),
                     BorderColor3 = FromRGB(12, 12, 12),
-                    Size = UDim2New(1, 0, 0, 10),
-                    BorderSizePixel = 2,
+                    Size = UDim2New(1, 0, 0, 8),
+                    BorderSizePixel = 1,
                     BackgroundColor3 = FromRGB(30, 36, 31)
                 })  Items["RealSlider"]:AddToTheme({BackgroundColor3 = "Element", BorderColor3 = "Border"})
 
@@ -2140,7 +2141,7 @@ local Library do
                     BorderColor3 = FromRGB(0, 0, 0),
                     Size = UDim2New(0.5, 0, 1, 0),
                     BorderSizePixel = 0,
-                    BackgroundColor3 = FromRGB(202, 243, 255)
+                    BackgroundColor3 = FromRGB(19, 128, 225)
                 })  Items["Accent"]:AddToTheme({BackgroundColor3 = "Accent"})
 
                 Instances:Create("UIGradient", {
@@ -2158,8 +2159,8 @@ local Library do
                     AnchorPoint = Vector2New(1, 0.5),
                     Position = UDim2New(1, 0, 0.5, 0),
                     BorderColor3 = FromRGB(42, 49, 45),
-                    Size = UDim2New(0, 3, 1, 3),
-                    BorderSizePixel = 2,
+                    Size = UDim2New(0, 3, 1, 2),
+                    BorderSizePixel = 1,
                     BackgroundColor3 = FromRGB(14, 17, 15)
                 })  Items["Dragger"]:AddToTheme({BackgroundColor3 = "Background", BorderColor3 = "Outline"})
 
@@ -2196,7 +2197,7 @@ local Library do
             end
 
             function Slider:SetVisibility(Bool)
-                Items["Slider"].Instance.Visible = Bool
+                Items["Slider"].Instance.Visible = Bool ~= false
             end
 
             function Slider:Set(Value)
