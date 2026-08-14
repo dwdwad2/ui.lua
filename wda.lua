@@ -1323,10 +1323,9 @@ local Library do
                     Items["SubPages"] = Instances:Create("Frame", {
                         Parent = Items["Page"].Instance,
                         Name = "\0",
-                        Size = UDim2New(0, 0, 0, 22),
+                        Size = UDim2New(1, 0, 0, 22),
                         BorderColor3 = FromRGB(42, 49, 45),
                         BorderSizePixel = 0,
-                        AutomaticSize = Enum.AutomaticSize.X,
                         BackgroundColor3 = FromRGB(20, 24, 21)
                     })  Items["SubPages"]:AddToTheme({BackgroundColor3 = "Page Background", BorderColor3 = "Outline"})
 
@@ -1344,6 +1343,7 @@ local Library do
                         Name = "\0",
                         VerticalAlignment = Enum.VerticalAlignment.Center,
                         FillDirection = Enum.FillDirection.Horizontal,
+                        HorizontalFlex = Enum.UIFlexAlignment.Fill,
                         Padding = UDimNew(0, 6),
                         SortOrder = Enum.SortOrder.LayoutOrder
                     })
@@ -1352,9 +1352,9 @@ local Library do
                         Parent = Items["Page"].Instance,
                         Name = "\0",
                         BackgroundTransparency = 1,
-                        Position = UDim2New(0, 0, 0, 51),
+                        Position = UDim2New(0, 0, 0, 30),
                         BorderColor3 = FromRGB(42, 49, 45),
-                        Size = UDim2New(1, 0, 1, -51),
+                        Size = UDim2New(1, 0, 1, -30),
                         BorderSizePixel = 0,
                         BackgroundColor3 = FromRGB(255, 255, 255)
                     })
@@ -1520,9 +1520,8 @@ local Library do
                     Text = "",
                     AutoButtonColor = false,
                     BackgroundTransparency = 1,
-                    Size = UDim2New(0, 0, 0, 18),
+                    Size = UDim2New(1, 0, 1, 0),
                     BorderSizePixel = 0,
-                    AutomaticSize = Enum.AutomaticSize.X,
                     TextSize = 11,
                     BackgroundColor3 = FromRGB(25, 30, 26)
                 })  Items["Inactive"]:AddToTheme({BackgroundColor3 = "Page Background", BorderColor3 = "Border"})
@@ -1729,6 +1728,20 @@ local Library do
 
                     Value:Turn(Value == SubPage)
                 end
+            end)
+
+            Items["Inactive"]:OnHover(function()
+                if SubPage.Active then 
+                    return 
+                end
+                Items["Inactive"]:Tween(TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 0.5})
+            end)
+
+            Items["Inactive"]:OnHoverLeave(function()
+                if SubPage.Active then 
+                    return 
+                end
+                Items["Inactive"]:Tween(TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1})
             end)
 
             if #Data.Page.SubPages == 0 then 
@@ -3086,7 +3099,7 @@ local Library do
                 Color = FromRGB(255, 255, 255),
                 HexValue = "#ffffff",
 
-                Pages = Data.Pages and { } or nil,
+                Pages = nil,
                 Flag = Data.Flag,
             }
 
