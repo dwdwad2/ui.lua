@@ -3168,7 +3168,7 @@ local Library do
                     ApplyStrokeMode = Enum.ApplyStrokeMode.Border
                 }):AddToTheme({Color = "Outline"})
 
-                if Data.Pages then 
+                if false and Data.Pages then 
                     Items["Pages"] = Instances:Create("Frame", {
                         Parent = Items["ColorpickerWindow"].Instance,
                         Name = "\0",
@@ -5024,7 +5024,7 @@ local Library do
                 Name = "\0",
                 Position = UDim2New(0, -5, 0, -5),
                 BorderColor3 = FromRGB(0, 0, 0),
-                Size = UDim2New(1, 10, 0, 1),
+                Size = UDim2New(0, 100, 0, 1),
                 BorderSizePixel = 0,
                 BackgroundColor3 = FromRGB(202, 243, 255)
             })  Items["Liner"]:AddToTheme({BackgroundColor3 = "Accent"})
@@ -5036,6 +5036,8 @@ local Library do
 
         function Watermark:SetText(Text)
             Items["Text"].Instance.Text = Text
+            local bounds = Items["Text"].Instance.TextBounds
+            Items["Liner"].Instance.Size = UDim2New(0, bounds.X + 10, 0, 1)
         end
 
         return Watermark
@@ -5325,6 +5327,7 @@ local Library do
         Data = Data or { }
 
         local Window = { 
+            Name = Data.Name or Data.name or "alternate",
             Logo = Data.Logo or Data.logo or "",
             FadeTime = Data.FadeTime or Data.fadetime or 0.25,
             Size = Data.Size or Data.size or UDim2New(0, 500, 0, 600),
