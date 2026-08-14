@@ -3132,6 +3132,38 @@ local Library = {
                 Items["Text"].Instance.Text = tostring(Text)
             end
 
+            function Section:AddToggle(Config)
+                return Self:Toggle(Config)
+            end
+
+            function Section:AddSlider(Config)
+                return Self:Slider(Config)
+            end
+
+            function Section:AddDropdown(Config)
+                return Self:Dropdown(Config)
+            end
+
+            function Section:AddButton(Config)
+                return Self:Button(Config)
+            end
+
+            function Section:AddColorPicker(Config)
+                return Self:ColorPicker(Config)
+            end
+
+            function Section:AddKeybind(Config)
+                return Self:Keybind(Config)
+            end
+
+            function Section:AddMultiSelect(Config)
+                return Self:MultiSelect(Config)
+            end
+
+            function Section:AddLabel(Config)
+                return Self:Label(Config)
+            end
+
             return setmetatable(Section, Library)
         end
 
