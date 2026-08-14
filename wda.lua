@@ -1573,9 +1573,9 @@ local Library do
                     Parent = Items["Inactive"].Instance,
                     Name = "\0",
                     BackgroundTransparency = 1,
-                    Position = UDim2New(0, 0, 1, -1),
+                    Position = UDim2New(0, -18, 1, -1),
                     BorderColor3 = FromRGB(0, 0, 0),
-                    Size = UDim2New(1, 0, 0, 1),
+                    Size = UDim2New(1, 30, 0, 1),
                     BorderSizePixel = 0,
                     BackgroundColor3 = FromRGB(202, 243, 255)
                 })  Items["Glow"]:AddToTheme({BackgroundColor3 = "Accent"})
@@ -1590,9 +1590,9 @@ local Library do
                     Parent = Items["Inactive"].Instance,
                     Name = "\0",
                     BackgroundTransparency = 1,
-                    Position = UDim2New(0, 0, 1, -1),
+                    Position = UDim2New(0, -18, 1, -1),
                     BorderColor3 = FromRGB(0, 0, 0),
-                    Size = UDim2New(1, 0, 0, 1),
+                    Size = UDim2New(1, 30, 0, 1),
                     BorderSizePixel = 0,
                     BackgroundColor3 = FromRGB(202, 243, 255)
                 })  Items["Liner"]:AddToTheme({BackgroundColor3 = "Accent"})
@@ -5037,7 +5037,7 @@ local Library do
         function Watermark:SetText(Text)
             Items["Text"].Instance.Text = Text
             local bounds = Items["Text"].Instance.TextBounds
-            Items["Liner"].Instance.Size = UDim2New(0, bounds.X + 10, 0, 1)
+            Items["Liner"].Instance.Size = UDim2New(1, 10, 0, 1)
         end
 
         return Watermark
