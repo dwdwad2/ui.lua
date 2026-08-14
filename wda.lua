@@ -234,20 +234,18 @@ local Library do
 
     local Themes = {
         ["Preset"] = {
-            -- Warm espresso surfaces and the soft peach accent mirror the
-            -- reference theme while keeping the existing theme keys intact.
-            ["Background"] = FromRGB(20, 16, 15),
-            ["Border"] = FromRGB(18, 15, 14),
-            ["Inline"] = FromRGB(25, 22, 20),
-            ["Hovered Element"] = FromRGB(50, 47, 45),
-            ["Page Background"] = FromRGB(40, 32, 30),
-            ["Outline"] = FromRGB(33, 28, 27),
-            ["Element"] = FromRGB(36, 34, 33),
-            ["Gradient"] = FromRGB(255, 214, 204),
-            ["Text"] = FromRGB(151, 151, 151),
+            ["Background"] = FromRGB(8, 8, 8),
+            ["Border"] = FromRGB(24, 24, 24),
+            ["Inline"] = FromRGB(18, 18, 18),
+            ["Hovered Element"] = FromRGB(38, 38, 38),
+            ["Page Background"] = FromRGB(12, 12, 12),
+            ["Outline"] = FromRGB(46, 46, 46),
+            ["Element"] = FromRGB(24, 24, 24),
+            ["Gradient"] = FromRGB(255, 255, 255),
+            ["Text"] = FromRGB(240, 240, 240),
             ["Text Stroke"] = FromRGB(0, 0, 0),
-            ["Placeholder Text"] = FromRGB(120, 120, 120),
-            ["Accent"] = FromRGB(255, 178, 157)
+            ["Placeholder Text"] = FromRGB(160, 160, 160),
+            ["Accent"] = FromRGB(255, 255, 255)
         }
     }
 
@@ -1306,9 +1304,9 @@ local Library do
                     Items["SubPages"] = Instances:Create("Frame", {
                         Parent = Items["Page"].Instance,
                         Name = "\0",
-                        Size = UDim2New(0, 0, 0, 35),
+                        Size = UDim2New(0, 0, 0, 26),
                         BorderColor3 = FromRGB(42, 49, 45),
-                        BorderSizePixel = 2,
+                        BorderSizePixel = 1,
                         AutomaticSize = Enum.AutomaticSize.X,
                         BackgroundColor3 = FromRGB(20, 24, 21)
                     })  Items["SubPages"]:AddToTheme({BackgroundColor3 = "Page Background", BorderColor3 = "Outline"})
@@ -1318,8 +1316,8 @@ local Library do
                     Instances:Create("UIPadding", {
                         Parent = Items["SubPages"].Instance,
                         Name = "\0",
-                        PaddingRight = UDimNew(0, 7),
-                        PaddingLeft = UDimNew(0, 7)
+                        PaddingRight = UDimNew(0, 5),
+                        PaddingLeft = UDimNew(0, 5)
                     })
 
                     Instances:Create("UIListLayout", {
@@ -1327,7 +1325,7 @@ local Library do
                         Name = "\0",
                         VerticalAlignment = Enum.VerticalAlignment.Center,
                         FillDirection = Enum.FillDirection.Horizontal,
-                        Padding = UDimNew(0, 12),
+                        Padding = UDimNew(0, 8),
                         SortOrder = Enum.SortOrder.LayoutOrder
                     })
 
@@ -1499,10 +1497,10 @@ local Library do
                     Text = "",
                     AutoButtonColor = false,
                     BackgroundTransparency = 1,
-                    Size = UDim2New(0, 0, 0, 20),
-                    BorderSizePixel = 2,
+                    Size = UDim2New(0, 0, 0, 18),
+                    BorderSizePixel = 1,
                     AutomaticSize = Enum.AutomaticSize.X,
-                    TextSize = 14,
+                    TextSize = 11,
                     BackgroundColor3 = FromRGB(25, 30, 26)
                 })  Items["Inactive"]:AddToTheme({BackgroundColor3 = "Page Background", BorderColor3 = "Border"})
 
@@ -1523,7 +1521,7 @@ local Library do
                     BorderColor3 = FromRGB(0, 0, 0),
                     Text = Data.Name,
                     AnchorPoint = Vector2New(0.5, 0.5),
-                    Size = UDim2New(0, 0, 0, 15),
+                    Size = UDim2New(0, 0, 0, 13),
                     BackgroundTransparency = 1,
                     Position = UDim2New(0.5, -5, 0.5, 0),
                     BorderSizePixel = 0,
