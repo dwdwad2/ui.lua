@@ -234,18 +234,18 @@ local Library do
 
     local Themes = {
         ["Preset"] = {
-            ["Background"] = FromRGB(8, 8, 8),
-            ["Border"] = FromRGB(24, 24, 24),
-            ["Inline"] = FromRGB(18, 18, 18),
-            ["Hovered Element"] = FromRGB(38, 38, 38),
-            ["Page Background"] = FromRGB(12, 12, 12),
-            ["Outline"] = FromRGB(46, 46, 46),
-            ["Element"] = FromRGB(24, 24, 24),
-            ["Gradient"] = FromRGB(255, 255, 255),
-            ["Text"] = FromRGB(240, 240, 240),
+            ["Background"] = FromRGB(20, 20, 25),
+            ["Border"] = FromRGB(10, 10, 15),
+            ["Inline"] = FromRGB(46, 46, 46),
+            ["Hovered Element"] = FromRGB(30, 30, 35),
+            ["Page Background"] = FromRGB(23, 23, 28),
+            ["Outline"] = FromRGB(10, 10, 15),
+            ["Element"] = FromRGB(30, 30, 35),
+            ["Gradient"] = FromRGB(19, 128, 225),
+            ["Text"] = FromRGB(245, 245, 245),
             ["Text Stroke"] = FromRGB(0, 0, 0),
-            ["Placeholder Text"] = FromRGB(160, 160, 160),
-            ["Accent"] = FromRGB(255, 255, 255)
+            ["Placeholder Text"] = FromRGB(145, 145, 145),
+            ["Accent"] = FromRGB(19, 128, 225)
         }
     }
 
@@ -1279,7 +1279,7 @@ local Library do
                     AnchorPoint = Vector2New(0, 1),
                     Position = UDim2New(0, 0, 1, 0),
                     BorderColor3 = FromRGB(0, 0, 0),
-                    Size = UDim2New(1, 0, 0, 18),
+                    Size = UDim2New(1, 0, 0, 1),
                     BorderSizePixel = 0,
                     BackgroundColor3 = FromRGB(25, 30, 26)
                 })  Items["Glow"]:AddToTheme({BackgroundColor3 = "Accent"})
@@ -1287,7 +1287,7 @@ local Library do
                 Items["GlowGradient"] = Instances:Create("UIGradient", {
                     Parent = Items["Glow"].Instance,
                     Name = "\0",
-                    Transparency = NumSequence{NumSequenceKeypoint(0, 0), NumSequenceKeypoint(0.193, 0.8687499761581421), NumSequenceKeypoint(0.504, 0.96875), NumSequenceKeypoint(1, 1)}
+                    Transparency = NumSequence{NumSequenceKeypoint(0, 1), NumSequenceKeypoint(1, 1)}
                 })
 
                 Items["Page"] = Instances:Create("Frame", {
@@ -1304,9 +1304,9 @@ local Library do
                     Items["SubPages"] = Instances:Create("Frame", {
                         Parent = Items["Page"].Instance,
                         Name = "\0",
-                        Size = UDim2New(0, 0, 0, 26),
+                        Size = UDim2New(0, 0, 0, 22),
                         BorderColor3 = FromRGB(42, 49, 45),
-                        BorderSizePixel = 1,
+                        BorderSizePixel = 0,
                         AutomaticSize = Enum.AutomaticSize.X,
                         BackgroundColor3 = FromRGB(20, 24, 21)
                     })  Items["SubPages"]:AddToTheme({BackgroundColor3 = "Page Background", BorderColor3 = "Outline"})
@@ -1316,8 +1316,8 @@ local Library do
                     Instances:Create("UIPadding", {
                         Parent = Items["SubPages"].Instance,
                         Name = "\0",
-                        PaddingRight = UDimNew(0, 5),
-                        PaddingLeft = UDimNew(0, 5)
+                        PaddingRight = UDimNew(0, 4),
+                        PaddingLeft = UDimNew(0, 4)
                     })
 
                     Instances:Create("UIListLayout", {
@@ -1325,7 +1325,7 @@ local Library do
                         Name = "\0",
                         VerticalAlignment = Enum.VerticalAlignment.Center,
                         FillDirection = Enum.FillDirection.Horizontal,
-                        Padding = UDimNew(0, 8),
+                        Padding = UDimNew(0, 6),
                         SortOrder = Enum.SortOrder.LayoutOrder
                     })
 
@@ -1498,7 +1498,7 @@ local Library do
                     AutoButtonColor = false,
                     BackgroundTransparency = 1,
                     Size = UDim2New(0, 0, 0, 18),
-                    BorderSizePixel = 1,
+                    BorderSizePixel = 0,
                     AutomaticSize = Enum.AutomaticSize.X,
                     TextSize = 11,
                     BackgroundColor3 = FromRGB(25, 30, 26)
@@ -1551,9 +1551,9 @@ local Library do
                     Parent = Items["Inactive"].Instance,
                     Name = "\0",
                     BackgroundTransparency = 1,
-                    Position = UDim2New(0, -18, 0, -2),
+                    Position = UDim2New(0, 0, 1, -1),
                     BorderColor3 = FromRGB(0, 0, 0),
-                    Size = UDim2New(0, 20, 1, 2),
+                    Size = UDim2New(1, 0, 0, 1),
                     BorderSizePixel = 0,
                     BackgroundColor3 = FromRGB(202, 243, 255)
                 })  Items["Glow"]:AddToTheme({BackgroundColor3 = "Accent"})
@@ -1561,16 +1561,16 @@ local Library do
                 Instances:Create("UIGradient", {
                     Parent = Items["Glow"].Instance,
                     Name = "\0",
-                    Transparency = NumSequence{NumSequenceKeypoint(0, 0), NumSequenceKeypoint(0.193, 0.8687499761581421), NumSequenceKeypoint(0.504, 0.96875), NumSequenceKeypoint(1, 1)}
+                    Transparency = NumSequence{NumSequenceKeypoint(0, 1), NumSequenceKeypoint(1, 1)}
                 })
 
                 Items["Liner"] = Instances:Create("Frame", {
                     Parent = Items["Inactive"].Instance,
                     Name = "\0",
                     BackgroundTransparency = 1,
-                    Position = UDim2New(0, -18, 0, -2),
+                    Position = UDim2New(0, 0, 1, -1),
                     BorderColor3 = FromRGB(0, 0, 0),
-                    Size = UDim2New(0, 1, 1, 2),
+                    Size = UDim2New(1, 0, 0, 1),
                     BorderSizePixel = 0,
                     BackgroundColor3 = FromRGB(202, 243, 255)
                 })  Items["Liner"]:AddToTheme({BackgroundColor3 = "Accent"})
@@ -2082,9 +2082,10 @@ local Library do
                     Name = "\0",
                     BackgroundTransparency = 1,
                     BorderColor3 = FromRGB(0, 0, 0),
-                    Size = UDim2New(1, 0, 0, 28),
+                    Size = UDim2New(1, 0, 0, 22),
                     BorderSizePixel = 0,
-                    BackgroundColor3 = FromRGB(255, 255, 255)
+                    BackgroundColor3 = FromRGB(255, 255, 255),
+                    Visible = Data.Visible == true
                 })
 
                 Items["Text"] = Instances:Create("TextLabel", {
@@ -2112,8 +2113,8 @@ local Library do
                     AnchorPoint = Vector2New(0, 1),
                     Position = UDim2New(0, 0, 1, 0),
                     BorderColor3 = FromRGB(12, 12, 12),
-                    Size = UDim2New(1, 0, 0, 10),
-                    BorderSizePixel = 2,
+                    Size = UDim2New(1, 0, 0, 8),
+                    BorderSizePixel = 1,
                     BackgroundColor3 = FromRGB(30, 36, 31)
                 })  Items["RealSlider"]:AddToTheme({BackgroundColor3 = "Element", BorderColor3 = "Border"})
 
@@ -2140,7 +2141,7 @@ local Library do
                     BorderColor3 = FromRGB(0, 0, 0),
                     Size = UDim2New(0.5, 0, 1, 0),
                     BorderSizePixel = 0,
-                    BackgroundColor3 = FromRGB(202, 243, 255)
+                    BackgroundColor3 = FromRGB(19, 128, 225)
                 })  Items["Accent"]:AddToTheme({BackgroundColor3 = "Accent"})
 
                 Instances:Create("UIGradient", {
@@ -2158,8 +2159,8 @@ local Library do
                     AnchorPoint = Vector2New(1, 0.5),
                     Position = UDim2New(1, 0, 0.5, 0),
                     BorderColor3 = FromRGB(42, 49, 45),
-                    Size = UDim2New(0, 3, 1, 3),
-                    BorderSizePixel = 2,
+                    Size = UDim2New(0, 3, 1, 2),
+                    BorderSizePixel = 1,
                     BackgroundColor3 = FromRGB(14, 17, 15)
                 })  Items["Dragger"]:AddToTheme({BackgroundColor3 = "Background", BorderColor3 = "Outline"})
 
@@ -2196,7 +2197,7 @@ local Library do
             end
 
             function Slider:SetVisibility(Bool)
-                Items["Slider"].Instance.Visible = Bool
+                Items["Slider"].Instance.Visible = Bool == true
             end
 
             function Slider:Set(Value)
@@ -5289,8 +5290,8 @@ local Library do
 
         local Window = { 
             Logo = Data.Logo or Data.logo or "",
-            FadeTime = Data.FadeTime or Data.fadetime or 0.4,
-            Size = Data.Size or Data.size or UDim2New(0, 751, 0, 539),
+            FadeTime = Data.FadeTime or Data.fadetime or 0.25,
+            Size = Data.Size or Data.size or UDim2New(0, 610, 0, 390),
 
             Pages = { },
             Items = { },
@@ -5303,16 +5304,16 @@ local Library do
             Draggable = true,
             Resizeable = true,
             AnchorPoint = Vector2New(0, 0),
-            Position = UDim2New(0, Camera.ViewportSize.X / 3.3, 0, Camera.ViewportSize.Y / 3.3),
+            Position = UDim2New(0, Camera.ViewportSize.X / 5.2, 0, Camera.ViewportSize.Y / 5.2),
             Size = Window.Size
         }) do
             Items["Side"] = Instances:Create("Frame", {
                 Parent = Items["Window"].Instance,
                 Name = "\0",
-                Position = UDim2New(0, 12, 0, 12),
+                Position = UDim2New(0, 8, 0, 8),
                 BorderColor3 = FromRGB(42, 49, 45),
-                    Size = UDim2New(1, -24, 0, 50),
-                BorderSizePixel = 2,
+                    Size = UDim2New(1, -16, 0, 38),
+                BorderSizePixel = 1,
                 BackgroundColor3 = FromRGB(20, 24, 21)
             })  Items["Side"]:AddToTheme({BackgroundColor3 = "Inline", BorderColor3 = "Outline"})
             
@@ -5393,9 +5394,9 @@ local Library do
                 Parent = Items["Window"].Instance,
                 Name = "\0",
                 BackgroundTransparency = 1,
-                Position = UDim2New(0, 12, 0, 74),
+                Position = UDim2New(0, 8, 0, 52),
                 BorderColor3 = FromRGB(0, 0, 0),
-                Size = UDim2New(1, -24, 1, -86),
+                Size = UDim2New(1, -16, 1, -60),
                 BorderSizePixel = 0,
                 BackgroundColor3 = FromRGB(255, 255, 255)
             })
