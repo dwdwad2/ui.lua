@@ -2211,6 +2211,7 @@ local Library do
                 Value = 0,
                 Flag = Data.Flag,
                 Sliding = false
+            }
             local Items = { } do
                 Items["Slider"] = Instances:Create("Frame", {
                     Parent = Data.Parent.Instance,
